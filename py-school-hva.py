@@ -1,4 +1,4 @@
-# dani tot regel 150
+# dani tot regel 136
 import winreg
 import ctypes
 import sys
