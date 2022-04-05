@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- bbjghjhk
 import winreg
 import ctypes
 import sys
