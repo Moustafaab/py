@@ -3,7 +3,7 @@ import winreg
 import ctypes
 import sys
 import os
-import random
+import randomdd
 import time
 import subprocess
 import discord
