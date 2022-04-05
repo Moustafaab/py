@@ -24,7 +24,6 @@ Availaible commands are :
 --> !webcampic = Take a picture from the webcam
 --> !windowstart = Start logging current user window (logging is shown in the bot activity)
 --> !windowstop = Stop logging current user window 
---> !voice = Make a voice say outloud a custom sentence / Syntax = "!voice test"
 --> !admincheck = Check if program has admin privileges
 --> !sysinfo = Gives info about infected computer
 --> !download = Download a file from infected computer
