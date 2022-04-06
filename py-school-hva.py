@@ -75,7 +75,7 @@ async def on_ready():
     channel_name = None
     for x in client.get_all_channels():  # From here we look through all the channels,check for the biggest number and then add one to it
         (on_ready.total).append(x.name)
-    for y in range(len(on_ready.total)):  # Probably a better way to do this
+    for y in range(len(on_ready.total)):  
         if "session" in on_ready.total[y]:
             import re
             result = [e for e in re.split("[^0-9]", on_ready.total[y]) if e != '']
